@@ -1,0 +1,184 @@
+1) ChatGPT: it's a tool, simillar to google search where we would be getting accurate answer.
+How to install and use the chat GPT
+
+2) Introduction to Devops
+=========================
+Father of Devops:Patrick Dubois
+DevOps is improvement.[in what sense-> Technology wise, cost optimisation and time to market]
+Technologies are changing, and we need to adopt latest techonolgy to use the things in best way.
+
+1) Withdrawal money from bank.
+2) Suppose you want to travel from US to India-
+
+100yrs back: Ship[4 Monts]
+50yrs back:[ship, flight[very costly]], Bus/car
+25yrs back:[flight[costly]]
+Now:flight
+
+I want to send message to you[you> US, I am in India]
+100yrs back: Birds(shorter distance)
+50yrs back:(Mobile phone, very costly 2$/minute)
+25yrs back:(Mobile, 1$/Minute)
+Now: Whatapp, Facebook(Instant chat, free of cost)
+
+3) Application development life cycle:
+
+4) Lab setup:
+50% theory, 50% practical
+https://killercoda.com/ and login with gmail
+
+
+Homework:
+1) Download and explore the chat GPT
+2) setup lab > https://killercoda.com/
+
+Agenda:
+GIT, Jenkins, Terraform, packer, docker, ELK, Spunk, K8s, SRE, Introduction to cloud, maven, testing, agile, Ansible,DevSECOPS[DAST, SAST] prrinciples....
+My requirement: I want to creating Voting application
+
+Information gathering phase: we will ask question to client about requirement.
+
+Elephant/tiger/snake- Can you please tell me how to draw snake
+
+*** Things looks very simple, but they are not.
+
+Developer: Developer is developing something which is never exist.
+
+
+
+Plan  > codding > Build  > Test
+
+1) Information gather phase
+2) Feedback phase
+3) Look and feel[Adding static logic]
+
+
+Application development phase
+=============================
+
+Planing: What we want to develop, and how we want to develop
+
+Codding: Developer will do codding as per my requirement
+
+Building: we would be adding presentation logic application
+
+Testing: test the application
+
+
+Application support phase
+=========================
+Relase: Developying application in testing environment
+
+Deploy: Deploying the application in production environment
+
+Operate: Running Bike/Car[fill the fuel] > Maintanance activity
+
+Monitor: Keep eye on it
+
+When we are creating any application we will test it multiple times to make sure everything is working fine-
+
+1) Development environment
+2) test environemnt
+3) stagging environment
+4) pre-prodution environemnt
+5) Production environment[Client facing environment]// my client can use the application
+
+
+Plan code build test release deploy operate monitor
+
+> For application development we have 8 phase.
+> Everyphase is owned by expert
+> If their is one person causing delay, it will impact entire application
+
+Role of Devops: to make all the phase efficient.
+
+
+15 Minutes: revision of last class, and discussion on homework
+
+60 Minutes: regular class
+
+15 Minutes: Doubt session
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
