@@ -1,0 +1,222 @@
+Study Matarial link: https://github.com/JanbaskDevops/studyMatarial
+
+1) Development mindset
+2) Design thinking
+3) CMMI 
+4) Operation thinking
+
+
+3 teams are involved in application development
+3.1) Business team - Precuring the business
+3.2) Development team- 
+3.3) Operation team-
+
+
+Developer are thinking 20 yrs ahead. 
+1) 5G > 7G/9G
+
+2) They have experimental mind
+
+3) they are not affraid of failure
+
+In Development side, Developer uses one methodology Design thinking.
+
+Problem statement: I want to create E-learning website.
+
+Solution1
+solution2
+..
+solution20
+
+Design thinking is a backbone of Development.
+
+Spring pet clinic- It's a place where people can rentout place for pet/plant on day basis, and expert will take care of them
+
+Developer will develop the application, and share the steps for ruuning the application along with deocumentation.
+
+Spring Petclinic is a Spring Boot application built using Maven or Gradle. You can build a jar file and run it from the command line (it should work just as well with Java 17 or newer):
+
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+
+
+
+ubuntu $ git clone https://github.com/spring-projects/spring-petclinic.git
+Cloning into 'spring-petclinic'...
+remote: Enumerating objects: 9912, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 9912 (delta 3), reused 8 (delta 0), pack-reused 9895
+Receiving objects: 100% (9912/9912), 8.03 MiB | 19.82 MiB/s, done.
+Resolving deltas: 100% (3718/3718), done.
+ubuntu $ cd spring-petclinic
+ubuntu $ ./mvnw package
+Error: JAVA_HOME is not defined correctly.
+  We cannot execute 
+ubuntu $ java -jar target/*.jar
+
+Command 'java' not found, but can be installed with:
+
+apt install openjdk-11-jre-headless  # version 11.0.20.1+1-0ubuntu1~20.04, or
+apt install default-jre              # version 2:1.11-72
+apt install openjdk-16-jre-headless  # version 16.0.1+9-1~20.04
+apt install openjdk-17-jre-headless  # version 17.0.8.1+1~us1-0ubuntu1~20.04
+apt install openjdk-8-jre-headless   # version 8u382-ga-1~20.04.1
+apt install openjdk-13-jre-headless  # version 13.0.7+5-0ubuntu1~20.04
+
+
+How to check if java is already installed >> java --version
+
+How to install java in ubuntu?
+apt-get update ; apt install openjdk-17-jre-headless
+
+ubuntu $ java --version
+openjdk 17.0.9 2023-10-17
+OpenJDK Runtime Environment (build 17.0.9+9-Ubuntu-120.04)
+OpenJDK 64-Bit Server VM (build 17.0.9+9-Ubuntu-120.04, mixed mode, sharing)
+
+Operation team expectation from development team
+================================================
+Development team provides complete inside about application
+
+
+
+Operation mindeset
+==================
+CMMI: Capability Maturity Model Integration (CMMI) is a process level improvement training and appraisal program. Administered by the CMMI Institute, a subsidiary of ISACA, it was developed at Carnegie Mellon University (CMU). It is required by many U.S. Government contracts, especially in software development.
+
+
+Development  >  Test   >  Stage   > Preprod   > Production[ruuning application]
+
+
+They are very stable, and they will follow process without fail.
+
+What happen when developer and operation people are working togather-
+
+1) lots of fights.
+2) Blame culture.
+
+10% Become developer
+90% Operations
+
+DevOps as solution:
+
+Father of Devops: Patrick Dubois
+
+Devopment Operations  > #DevOpsDay[formar name of Devops] > DevOps  > 5 principles
+
+1) Development should respect operation team.
+
+2) Operation team should respect development team.
+
+3) Process should follow uniform process.
+
+4) Automation.
+
+5) CICD principles
+
+SRE[Site reliability Engineer] > Job role of DevOps in Google
+
+Homework:
+https://devops-e2e.blogspot.com/2023/07/sdlc.html
+
+
+Tomorrow agenda:
+================
+Installation of Docker, Terraform, packer and GIT
+Golden images.
+What is docker, and how it is solving the problem.
+few linux commands
+
+Client requirement: 8 GB RAM, 200 HDD and 1 graphics card
+# How to create linux environment in AWS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
