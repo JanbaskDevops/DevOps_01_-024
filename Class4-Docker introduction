@@ -6,3 +6,123 @@ Docker and it's need
 Docker playground
 Docker architecture
 Imaging system
+
+
+Why docker started, and which problem it is solving.
+====================================================
+
+Let me introduce some terms:
+
+1) Base operating system: initial setup of ubuntu, centos or redhat
+
+2) Provisioning: when we are installing software on base operating system[GIT and Java]
+
+3) Golden image: Packing base image and provising it with required software.
+
+Example: https://github.com/spring-projects/spring-petclinic
+
+Base image/operating system: ubuntu
+provisioning: java/git
+
+3) Scale in/scale out[scalling]: Adding/removing system
+scaleout: increaing number of system
+scalein: increaing the capacity
+
+4) Memory and CPU calculation
+I want to add 2 number
+number1[8bit], number2[8bit] and result[24 bit, for 8 bit]
+
+Like this we are calculating out memory and CPU. let say my application need 2 CPU and 10 GB RAM to support 100 user
+
+5) Application deployment: Development team will provide the steps
+
+provisioning
+============
+installing java and git //
+installation begin: 02:54:18 UTC 2024
+Installation completed: Thu Jan 25 02:55:19 UTC 2024
+
+For installing java and GIT it will take appox 2 minute
+
+Deployment prepration
+======================
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+Start Time:8:27
+End Time:8:33
+
+Actual deployent
+================
+java -jar target/*.jar //10 second
+
+
+Overall deployment time= Provining time + Deployment prepration time + Actual deployment
+                                 2 + 6 + 0.10
+
+8.10 minutes
+
+what problem golden image is solving: 
+=====================================
+Golden image reduce application deployment time by 2 minutes in this case, but still we need to do application deployment which cause appox 6 minutes.
+So, if I need to autoscale application then actually it would be autoscalled after 6 minutes.
+
+Docker
+=====
+packing application and it's dependancy.
+
+Task1: I want to print welcome to centos system
+from centos
+cmd print("welcome to centos")
+
+Task2: I want to print welcome to ubuntu system
+from ubuntu
+cmd print("welcome to centos")
+
+Task3: I want to print welcome to alpine system
+from alpine
+cmd print("welcome to centos")
+
+
+ubuntu $ docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED              SIZE
+image3       latest    4eb66e9929cd   15 seconds ago       7.38MB
+image2       latest    d7d020f8533d   45 seconds ago       231MB
+image1       latest    da7732498df6   About a minute ago   77.9MB
+ubuntu       latest    e34e831650c1   13 days ago          77.9MB
+alpine       latest    f8c20f8bbcb6   6 weeks ago          7.38MB
+centos       latest    5d0da3dc9764   2 years ago          231MB
+ubuntu $ docker run image1
+welcome to ubuntu
+ubuntu $ docker run image2
+welcome to ubuntu
+ubuntu $ docker run image3
+welcome to alpine
+
+
+ubuntu $ docker image ls
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+ubuntu $ vi dockerfile
+ubuntu $ docker build -t image2024 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  26.11kB
+Step 1/2 : from ubuntu
+latest: Pulling from library/ubuntu
+29202e855b20: Pull complete 
+Digest: sha256:e6173d4dc55e76b87c4af8db8821b1feae4146dd47341e4d431118c7dd060a74
+Status: Downloaded newer image for ubuntu:latest
+ ---> e34e831650c1
+Step 2/2 : cmd echo "Welcome to 2024
+ ---> Running in 95483070a2f0
+Removing intermediate container 95483070a2f0
+ ---> cb6cff343ef9
+Successfully built cb6cff343ef9
+Successfully tagged image2024:latest
+
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+image2024    latest    cb6cff343ef9   31 seconds ago   77.9MB
+ubuntu       latest    e34e831650c1   13 days ago      77.9MB
+
