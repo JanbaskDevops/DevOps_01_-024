@@ -1,0 +1,156 @@
+# Golden image with docker
+==========================
+
+1) for writing docker image we need to write a test file with name dockerfile where we would be writing the instruction.
+
+2) syntax to create docker image is: docker build -t <image-name> dicrectory-of-dockerfile.
+
+vi editor
+=========
+It is basically test editor
+1) to open text editor vi file-name | vi dockerfile
+
+it has 2 mode-
+1) insert mode: i
+2) saved mode
+
+
+Rule for docker image
+======================
+1) Dockerfile alway start with FROM statement.
+   FROM <os-name>
+
+2) Whenever we want to display anything on terminal
+   CMD echo "Message"
+
+
+Exacize1: Create docker image with ubuntu, and print welcome to ubuntu in message.
+FROM ubuntu
+CMD echo "welcome to ubuntu"
+
+3) to create docker image we run command >>>> docker build -t image-name .
+
+4) to run docker image we run command >>> docker run image-name
+
+
+ubuntu $ docker build -t image1 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  26.62kB
+Step 1/2 : FROM ubuntu
+latest: Pulling from library/ubuntu
+29202e855b20: Pull complete 
+Digest: sha256:e6173d4dc55e76b87c4af8db8821b1feae4146dd47341e4d431118c7dd060a74
+Status: Downloaded newer image for ubuntu:latest
+ ---> e34e831650c1
+Step 2/2 : CMD echo "welcome to ubuntu"
+ ---> Running in fbf400384ec0
+Removing intermediate container fbf400384ec0
+ ---> 244a16fc8aa7
+Successfully built 244a16fc8aa7
+Successfully tagged image1:latest
+
+
+Exacize2: I want to create docker image with centos, and I want to print the message "welcome to centos"
+FROM centos
+CMD echo "welcome to centos"
+
+
+Exacize: I want to print "Welcome to Alpine" and I want to use Alpine OS
+FROM alpine
+CMD echo "Welcome to alpine"
+
+Sending build context to Docker daemon  27.14kB
+Step 1/2 : FROM centos
+latest: Pulling from library/centos
+a1d0c7532777: Pull complete 
+Digest: sha256:a27fd8080b517143cbbbab9dfb7c8571c40d67d534bbdee55bd6c473f432b177
+Status: Downloaded newer image for centos:latest
+ ---> 5d0da3dc9764
+Step 2/2 : CMD echo "welcome to centos"
+ ---> Running in 13c6a79dd199
+Removing intermediate container 13c6a79dd199
+ ---> 523d8f24ab4d
+Successfully built 523d8f24ab4d
+Successfully tagged image2:latest
+ubuntu $ docker run image2
+welcome to centos
+ubuntu $ >dockerfile 
+ubuntu $ vi dockerfile 
+ubuntu $ docker build -t image3 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  27.14kB
+Step 1/2 : from alpine
+latest: Pulling from library/alpine
+4abcf2066143: Pull complete 
+Digest: sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
+Status: Downloaded newer image for alpine:latest
+ ---> 05455a08881e
+Step 2/2 : cmd echo "welcome to alpine"
+ ---> Running in 8cce202ce338
+Removing intermediate container 8cce202ce338
+ ---> 4d9a45250500
+Successfully built 4d9a45250500
+Successfully tagged image3:latest
+ubuntu $ docker run image3
+welcome to alpine
+
+Experiment3: Create a dockerimage that uses ubuntu, and we install java in top of ubuntu
+Rule5: To install any software we need to run the command
+RUN <linux command>
+
+FROM Ubuntu
+RUN apt install openjdk-11-jre-headless 
+
+Whenever we do any installation, and prompt ask for yes/no, so we need to provide -y in the dockerfile itself
+
+RUN apt-get update >>> Please run this command prior to install any software
+Reading state information...
+E: Unable to locate package openjdk-11-jre-headless
+The command '/bin/sh -c apt install openjdk-11-jre-headless' returned a non-zero code: 100
+
+Do you want to continue? [Y/n] Abort.
+The command '/bin/sh -c apt install openjdk-11-jre-headless' returned a non-zero code: 1
+
+
+Experiment4: Create a image to install GIT in ubuntu OS
+FROM ubuntu
+RUN apt-get update
+RUN apt install git -y
+
+Experment5: Create a docker image with git and java installed, and I want to print message "welcome to golden image" on ubuntu OS.
+
+
+from ubuntu
+
+# installing GIT
+run apt-get update
+run apt install git -y
+
+# install java
+run apt-get update
+run apt install default-jre -y
+
+cmd echo "welcome to golden image"
+
+
+Vi editor
+=========
+# Vi editor is a test based editor.
+
+1) to open file >>> vi file-name.
+
+2) default behavior is file is lock, you need to press <<i>> key to insert the text.
+
+3) to save the file 
+   esc + :wq  
+
+4) for quiting the file
+   esc + :q
+
+esc > when we press this key it lock the file
