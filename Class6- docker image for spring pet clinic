@@ -1,0 +1,159 @@
+Dockerizing spring pet clinic
+=============================
+1) Development team will do development activity, and they share step for deployment-
+
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+
+
+Exacize: Create docker image for above instruction.
+
+https://hub.docker.com/ >> You need to signup here. it's 2 step process.[Name and email id]
+It's the store where we are storing the images.
+
+
+Lab: https://labs.play-with-docker.com/
+
+
+FROM ubuntu
+RUN apt-get update
+RUN apt install openjdk-17-jre-headless -y
+RUN apt-get update
+RUN apt install git -y
+RUN git clone https://github.com/spring-projects/spring-petclinic.git
+WORKDIR spring-petclinic
+RUN ./mvnw package
+CMD java -jar target/*.jar
+
+
+ubuntu $ docker build -t image1 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  26.11kB
+Error response from daemon: dockerfile parse error on line 4: unknown instruction: git
+
+Generally, in front of linux command we need to enter RUN/CMD, generally in last command we add CMD else RUN
+
+
+WORKDIR: RUN cd
+
+RUN: for provisining the base image.[It means if you want to add any additional software like git and java incase of ubuntu]
+Docker work in the concept of WORA[write once run anywhere]
+
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+
+docker tag image2 2020ht66049/image2:8.2.2
+docker push 2020ht66049/image2:8.2.2
+
+step 1) Creating connection between dockerhub and linuc terminal
+
+ubuntu $ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: 2020ht66049
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+Step2: Tag image with new name
+
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+
+docker tag image1 2020ht66049/image1:kaku
+
+step3: run the image docker run -idt -p 8080:8080 2020ht66049/image1:kaku
+
+
+Introduction to Docker
+======================
+> Docker package application and dependancy, so you just need to run the docker run command, in background it will do everything.
+
+> Docker is WORA[write once use anywhere]
+
+> Docker is using parallel processing
+
+$ docker run -idt -p 8080:8080 2020ht66049/image1:kaku
+Unable to find image '2020ht66049/image1:kaku' locally
+kaku: Pulling from 2020ht66049/image1
+29202e855b20: Pull complete 
+c526b6cd2e18: Pull complete 
+2a5a348be17f: Pull complete 
+144c0fb2bcae: Pull complete 
+6d604c79c096: Pull complete 
+6a7e7431ca20: Pull complete 
+fb960f7ba628: Extracting  195.5MB/237.2MB
+
+FROM ubuntu
+RUN apt-get update
+RUN apt install openjdk-17-jre-headless -y
+RUN apt-get update
+RUN apt install git -y
+RUN git clone https://github.com/spring-projects/spring-petclinic.git
+WORKDIR spring-petclinic
+RUN ./mvnw package
+CMD java -jar target/*.jar
+
+> Every linux command is creating a layer, and those layers are working parallely.
+
+> size of docker image is dependant on size of layer. some layers contribute space to docker image
+
+> viewing image size> https://hub.docker.com/layers/2020ht66049/image1/kaku/images/sha256-0a8b6d4fa478d2c2b627da781762d1273c3b5f7c96f9790b884113f66ed28b0a?context=repo
+
+> Docker architecture.
+
+docker run -idt -p 8080:8080 2020ht66049/image1:kaku
+Unable to find image '2020ht66049/image1:kaku' locally
+kaku: Pulling from 2020ht66049/image1
+29202e855b20: Pull complete 
+c526b6cd2e18: Pull complete 
+2a5a348be17f: Pull complete 
+144c0fb2bcae: Pull complete 
+6d604c79c096: Pull complete 
+6a7e7431ca20: Pull complete 
+fb960f7ba628: Pull complete 
+Digest: sha256:0a8b6d4fa478d2c2b627da781762d1273c3b5f7c96f9790b884113f66ed28b0a
+Status: Downloaded newer image for 2020ht66049/image1:kaku
+20dcb8798a0be0a17e44e3a95164310f085e487d15e09557a5a8821a2e571309
+
+
+what is docker hub?
+===================
+It is a place where people are storing their images for future use.
+
+URL: https://hub.docker.com/
+
+Creating repository:
+
+Trusted Content-
+
+Docker Official Image
+
+Verified Publisher
+
+Sponsored OSS
+
+> Docker uses layered communication, it means if anything is not their then only it will download else it will display already exist
+29202e855b20: Already exists > it's from ubuntu command
+
+
+
+Tomorrow Agend:
+===============
+1) Docker image instruction
+2) running docker commands
+3) docker cheat sheet
+
+Homework:
+=========
+1) make you hand darty with docker hub, and explore atleast 5-10 softwares, and try to run it
+
+docker pull jenkins
+docker run -p 8000:8000 jenkins:2.60.3
