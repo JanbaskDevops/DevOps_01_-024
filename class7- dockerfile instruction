@@ -1,0 +1,70 @@
+Docker file instruction: set of instruction that use to convert deployment step to docker image
+=======================
+
+Reference: https://docs.docker.com/engine/reference/builder/
+
+1) from/FROM:  from/FROM <os>
+As best practice we need to use FROM
+
+2) RUN: When you want to install additonal software in top of base image.
+> difference between VM ubuntu[2.3 GB] and docker ubuntu[78 MB]
+> in docker ubuntu it will give only basic setup, and you need to install many command.
+  example: ping
+
+> in normal ubuntu we have appox 972 commands
+ubuntu@ip-172-31-45-90:/bin$ ls | wc -l
+972
+
+ubuntu@ip-172-31-45-90:/bin$ ls | wc -l
+973
+
+>When we install any application/software it will install as command, and it will take some space in the memory.
+
+>Space of any OS = base OS + Linux command(s) space.
+
+>Out of 973 we are using maximum 100 commands, and remaining are unused which occupy unnecessar space. docker say lets install only what is needed to reduce image size.
+
+> in docker ubuntu
+Successfully tagged image3:latest
+ubuntu $ docker run image3
+/bin/sh: 1: ping: not found
+
+3) CMD: when we are running the image what command should be run post installation.
+
+
+4) Entrypoint
+
+thier is a problem with CMD that by command line we can overwide the CMD command
+
+FROM ubuntu
+CMD echo "Hello-world"
+
+ubuntu $ docker run image4
+Hello-world
+ubuntu $ docker run image4 echo "Namaste"
+Namaste
+
+this problem is solved by entrypoint
+
+FROM ubuntu
+entrypoint echo "Hello-world"
+
+ubuntu $ docker run image5
+Hello-world
+ubuntu $ docker run image5 echo "namaste"
+Hello-world
+
+
+
+5) Opening a port
+    expose <portnumber>
+
+6) workdir[implementation of change directory comamnd]
+
+
+7) ENV
+
+8) ARG
+
+
+docker run --name some-mongo -d mongo:5.0
