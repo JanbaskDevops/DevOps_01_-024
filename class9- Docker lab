@@ -9,3 +9,14 @@ step2: use docker run to run the software
 Assigment:
 =========
 Explore jenkins, sonarqube, terraform, mysql by docker playground and docker run.
+
+Docker compose: I want to create one application that show me the count of refresh.
+git@github.com:JanbaskDevops/dockerCompose.git
+
+No one uses docker compose in production.
+
+
+docker networking: to enable communication between container we need to create network
+
+
+docker swarm: it is multi host solution.
