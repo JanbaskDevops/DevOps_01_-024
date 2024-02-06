@@ -1,0 +1,11 @@
+Running any software by docker:
+===============================
+step1: find the docker image and tag.
+Example> tomcat:latest
+
+step2: use docker run to run the software
+
+
+Assigment:
+=========
+Explore jenkins, sonarqube, terraform, mysql by docker playground and docker run.
