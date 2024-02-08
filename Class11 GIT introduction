@@ -1,0 +1,170 @@
+Install java and maven
+======================
+apt-get update
+apt install openjdk-17-jre-headless
+
+apt-get update
+apt install maven
+
+
+    validate - validate the project is correct and all necessary information is available
+    compile - compile the source code of the project
+    test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+    package - take the compiled code and package it in its distributable format, such as a JAR.
+    verify - run any checks on results of integration tests to ensure quality criteria are met
+    install - install the package into the local repository, for use as a dependency in other projects locally
+    deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+
+    <project>
+      <modelVersion>4.0.0</modelVersion>
+      <groupId>com.mycompany.app</groupId>
+      <artifactId>my-app</artifactId>
+      <version>1</version>
+    </project>
+
+POM.xml file: https://github.com/spring-projects/spring-petclinic/blob/main/pom.xml
+
+Host deployment: Deploying things on one server.
+
+container deployment: 
+
+GIT
+===
+Question, Where should be store our data/improtant thing?
+Answer: repository[GIT]
+
+https://github.com/ > singup > create the repository
+https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
+
+When you are creating the repository, you would be getting commands like below-
+
+echo "# learning-karabikigUmes" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/JanbaskDevops/learning-karabikigUmes.git
+git push -u origin main
+
+Way to upload the data in repository?
+=====================================
+
+1: By server > Get started by creating a new file or uploading an existing file
+2:
+
+What is GIT, and how it will work?
+GIT will maintain the history of work done by anyone on repositroy
+
+commit 4a82e3220f054d448e0a6b962ed01dc3cacc2b5a
+Author: JanbaskDevops <148902929+JanbaskDevops@users.noreply.github.com>
+Date:   Tue Feb 6 09:28:46 2024 +0530
+
+ubuntu $ git log --oneline
+a376acb (HEAD -> main, origin/main, origin/HEAD) Create Class10- Maven introduction
+4a82e32 Update class9- Docker lab
+c60d227 Create class9- Docker lab
+71f6784 Update classs8- Docker run command
+68139b6 Update classs8- Docker run command
+b75ad8c Create classs8- Docker run command
+e21c73f Create class7- dockerfile instruction
+6c888e0 Create Class6- docker image for spring pet clinic
+2d530d4 Create Class5- Docker file initial steps
+2587489 Update Class4-Docker introduction
+acfeac1 Delete Class3
+27427f7 Create Class3- Devops tools installation and golden image
+5a33dea Update Class4-Docker introduction
+8ae63fc Update Class4-Docker introduction
+ab9fd85 Create Class4-Docker introduction
+b79d9d6 Update Class3
+28c2006 Create Class3
+f434935 Create Class2- Deep drive into mindset of Devops team
+d16aa53 Add files via upload
+How to install git?
+===================
+apt-get update
+apt install git -y
+
+How to remove git?
+apt-get update
+apt remove git
+
+How GIT will recognize who is working?
+We need to setup our username and password
+
+git config --global user.name "umesh"
+git config --global user.name "umesh@gmail.com"
+
+.sh > linux
+.bat > window
+
+history of GIT and git flow?
+============================
+I have 100 MB image, and I need to compress it to 2 MB
+100 >80 >73 >................ 2 MB
+quality would be the factor
+
+ubuntu $ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        class11notes
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+…or create a new repository on the command line
+
+echo "# new_learning_repository" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/JanbaskDevops/new_learning_repository.git
+git push -u origin main
+
+Link: https://www.cspsprotocol.com/git-areas/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
