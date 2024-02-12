@@ -1,0 +1,62 @@
+Once we create the repositroy we will get below commands
+
+echo "# testing_10_02_2024" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/JanbaskDevops/testing_10_02_2024.git
+git push -u origin main
+
+Way1: Uploading file to repository from web[not recomdeded way]
+
+way2: upload file from linux terminal
+
+
+Step from linux terminal to github
+==================================
+
+step1) Login to server and setup username and email
+git config --global user.name umesh
+git config --global user.email umesh@gmail.com
+
+ubuntu $ git config --global user.name umesh
+ubuntu $ git config --global user.email umesh@gmail.com
+ubuntu $ git config --list
+user.name=umesh
+user.email=umesh@gmail.com
+
+Step2) GIT clone <URL>
+this command used to copy the containt from repository to linux server
+
+ubuntu $ git clone https://github.com/JanbaskDevops/testing_10_02_2024.git
+Cloning into 'testing_10_02_2024'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 910 bytes | 910.00 KiB/s, done
+
+Step3) changing location to project directory
+          cd testing_10_02_2024
+
+pwd: print/present working directory
+
+
+step4) 
+
+ubuntu $ vi file2         
+ubuntu $ git add file2 
+ubuntu $ git commit -m "adding file2 to server"
+[main 092ba46] adding file2 to server
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file2
+
+
+
+git add <filname>
+git commit -m "message"
+
+Token based authentication: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+
+git remote set-url origin https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
+git push -u origin main
