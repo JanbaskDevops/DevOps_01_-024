@@ -1,0 +1,76 @@
+[SAST/DAST]: Static Application security testing/Dynamic Application Security Testing 
+
+
+Static application security testing: 
+====================================
+It's basically testing application code from security point of view.
+
+Horusec is an open source framework that enhances the identification of vulnerabilities in your project with just one command.
+
+[Source code] https://github.com/juice-shop/juice-shop
+Step1: git clone https://github.com/juice-shop/juice-shop
+
+[SAST tool link] https://github.com/ZupIT/horusec
+Step2: apt-get update ; apt install jq
+
+Step3: curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest # This will install the tool
+   
+Step4: horusec start -D -e="true" -p ./
+
+Dynamic application security testing
+=====================================
+We perform dynamic application security testing in application URL.
+
+1) Application URL: it will refer application [https://www.google.com/]
+2) Application end point: it would refer landing zone.[https://mail.google.com/mail/u/0/?ogbl#inbox]
+
+Step1: docker run --rm -idt -p 3000:3000 bkimminich/juice-shop 
+
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t <Application URL>
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://ip172-18-0-13-cn6nruk7vdo000fv82qg-3000.direct.labs.play-with-docker.com/#/
+
+WARN-NEW: Dangerous JS Functions [10110] x 2 
+        http://ip172-18-0-100-ckucfiufml8g009dm00g-3000.direct.labs.play-with-docker.com/main.js (200 OK)
+        http://ip172-18-0-100-ckucfiufml8g009dm00g-3000.direct.labs.play-with-docker.com/vendor.js (200 OK)
+FAIL-NEW: 0     FAIL-INPROG: 0  WARN-NEW: 9     WARN-INPROG: 0  INFO: 0 IGNORE: 0       PASS: 56
+
+
+Software composition analysis
+=============================
+Host > docker > Application >> One stack
+in software composition analysis, it will break stack into components, and then do analysis
+
+[Source code] https://github.com/juice-shop/juice-shop
+Step1: git clone https://github.com/juice-shop/juice-shop
+
+Step2: cd juice-shop/frontend/ ; vi package.json
+in package.jso we have defined our dependancy. 
+
+Step3: add dependacy "lodash": "0.5.0",
+lodash: Lodash is a JavaScript library which provides utility functions for common programming tasks using the functional programming paradigm
+
+Step4: apt-get update ; apt install npm
+
+Step5: npm install
+ 
+added 1479 packages from 2458 contributors and audited 1521 packages in 110.665s
+
+260 packages are looking for funding
+  run `npm fund` for details
+
+found 11 vulnerabilities (10 moderate, 1 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+
+Assignment:
+==========
+What is OWASP10, and understand it > https://owasp.org/www-project-top-ten/
+
+
+
+
+
+
+
+
+
