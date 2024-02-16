@@ -1,0 +1,68 @@
+SAST/DAST/SCA: These tools are part of DevSecOPs.
+
+IAAS:Generally we will create linux machine, and we would be installing the tools
+SAAS: Company will provide their cloud version which is very popular in market this days
+
+Example: 
+IAAS: Sonarqube
+SAAS: Sonarcloud
+
+if we are using cloud version of softwarem it will give same look and feel as on premises server, but it would be cheaper.
+
+Sonarqube: https://www.sonarsource.com/products/sonarqube/
+
+Bugs: Code is not written in standard way which may cause issue with functionality.
+
+Code smell: Code that is confusing and difficult to maintain
+
+Security hotspot: Percentage of Security Hotspots reviewed (fixed or safe) among all non-closed Security Hotspots.
+
+in your CICD pipline we will pass organisation key and project key to have automated sonarscan.
+
+Stpes:
+1) Fork spring pet clinic git hub
+2) goto sonarcloud and signup with github
+
+Jfrog artifactory:
+==================
+When new version will come or number of days[reporting purpose]
+
+I want to have report of all my build by Every Monday 11 AM >> Number of Day[After Every 8 days]
+
+Every software has some version associated with it.
+
+software <MajorVersion>.<Minorversion>.<fixpack>
+
+ubuntu $ docker --version
+Docker version 24.0.5, build 24.0.5-0ubuntu1~20.04.1
+ubuntu $ git --version
+git version 2.25.1
+
+WORA: Write once run anywhere
+
+
+FROM ubuntu
+CMD echo "Helloworld"
+
+docker build -t image1 . <Karthick>
+docker build -t image1 . <Umesh>
+docker build -t image1 . <Abimbola>
+
+
+to avoid this duplication one can push image to cerntal place, and another can use it. this central place is known as artifactory.
+
+
+
+
+How softwares are getting updated?
+==================================
+
+fixpack: This release line delivers bug fixes and new features rapidly to users and plugin developers who need them. It is generally delivered on a weekly cadence.
+
+3 months release:  Stable (LTS) Long-Term Support (LTS) release baselines are chosen every 12 weeks from the stream of regular releases. Every 4 weeks we release stable releases which include bug and security fix backports.
+
+let say we have jenkins version 2.
+
+2.0.0.
+
+Majorversion.(1-4).(1-12)
