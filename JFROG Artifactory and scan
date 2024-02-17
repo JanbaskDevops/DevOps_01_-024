@@ -1,0 +1,94 @@
+I am working on spring pet clinic application, my requirement is creating dockerimage for it.
+
+WORA: write once run anywhere.
+
+Main purpose of artifactory is avoiding duplication and making process faster.
+
+
+
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+[5-8 minutes]
+
+
+java -jar target/*.jar
+
+
+1) Application will alway have some tracking number[version]. which would be like
+   <Majorrelease>.<minorRelease>.<fixpack>
+    1.2.1
+    1.2.2
+    1.2.3
+    ----
+
+What is the repository?
+It's a place where we will store the articat.
+
+
+<distributionManagement>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>a0ndkiugmzwlt-artifactory-primary-0-snapshots</name>
+        <url>https://umeshkumar.jfrog.io/artifactory/abimkartik-libs-snapshot</url>
+    </snapshotRepository>
+</distributionManagement>
+
+
+docker push > docker login [username password]
+
+
+
+
+docker pull umeshkumar.jfrog.io/xyz-docker/hello-world:latest
+
+docker tag umeshkumar.jfrog.io/xyz-docker/hello-world umeshkumar.jfrog.io/xyz-docker/hello-world:1.0.0
+docker push umeshkumar.jfrog.io/xyz-docker/hello-world:1.0.0
+
+docker tag image1 umeshkumar.jfrog.io/xyz-docker/image1:1.0.0
+
+docker push umeshkumar.jfrog.io/xyz-docker/image1:1.0.0
+
+
+JFrog Xray is a universal software composition analysis (SCA) solution that natively integrates with Artifactory, giving developers and DevSecOps teams an easy way to proactively identify vulnerabilities on open source and license compliance violations, before they manifest in production releases.
+
+Link: https://jfrog.com/help/r/get-started-with-the-jfrog-platform/jfrog-xray
+
+Jfrog cheat sheet: https://jfrog.com/cheat-sheet/jfrog-cli-made-easy/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Nextweek
+=========
+1) Deployment
+2) Ansible
+3) Monitoring and SRE
+4) Jenkins
