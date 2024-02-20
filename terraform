@@ -1,0 +1,728 @@
+Waiting for resource to join-
+
+Today's topic: Terraform
+Tomorrow's topic: Azure DevOps
+
+
+Lets say we are working for organisation and they are using cloud for cost optimization.
+
+Window 10 Licence for 5 yrs:
+
+Window 10 Licence for 5 yrs by cloud: Pay per use
+total 5 yrs : 43800 hours
+use in 5 yrs: 10000 hours
+
+In cloud we will pay what we have used.
+
+
+Development Environment- 24*7
+Test Environment 24*7
+Production Environment 24*7
+
+When developer is using development environment make it on, and same for test environment.
+
+What is cloud?
+Cloud is basically using someone else infrastucture, and it's very cheap.
+
+
+Example: You want to go for laptop formate, so you want to save for 500 GB data backup
+
+1) Get 500 GB harddisk/pendrive: 5000 INR
+2) Put you data in cloud : 1050 INR
+
+
+What is Terraform: Suppose you have multicloud environment
+
+AWS Cloud- my frintend
+Azure Cloud- My infrastucture
+Google Cloud- Analytics and data science
+Oracle Cloud- My database
+
+Cloud native application design
+===============================
+We need make application such in a way that it work on all the cloud.
+
+How to manage multicloud environment?
+=====================================
+aws cli
+az
+google cli
+oracle cli
+
+My requirement, I need to manage multiple cloud environment with 1 tool
+Solution: Terraform
+
+What is terraform? and what it do?
+===================================
+Terraform is IAC practice, here you will able to all the things that you want to do by manually.
+
+
+Terraform providers: https://registry.terraform.io/browse/providers[3900+]
+
+
+
+
+
+
+
+
+
+
+
+resource "azurerm_resource_group" "example" {
+  name     = "example"
+  location = "West Europe"
+}
+
+
+
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.92.0"
+    }
+  }
+}
+provider "azurerm" {
+ resource "azurerm_resource_group" "example" {
+  name     = "example"
+  location = "West Europe"
+  
+ }
+}
+
+
+Terraform education link: https://developer.hashicorp.com/terraform
+
+Terraform download: 
+
+
+When we are creating user we would be getting access and secrate key
+
+IAM > Users > janbask then go to security credntial 
+
+Access key: AKIAQ3EGWSKBBMAKL24F
+secrate key: UNhxqYD39F0Pic4fmf6lhm5hdBJSOUItDhvz7/7y
+
+
+
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-1017-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Feb 20 03:19:34 UTC 2024
+
+  System load:  0.130859375       Processes:             100
+  Usage of /:   20.6% of 7.57GB   Users logged in:       0
+  Memory usage: 22%               IPv4 address for eth0: 172.31.28.91
+  Swap usage:   0%
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@ip-172-31-28-91:~$ sudo su -
+root@ip-172-31-28-91:~# export AWS_ACCESS_KEY_ID=AKIAQ3EGWSKBBMAKL24F
+root@ip-172-31-28-91:~# export AWS_SECRET_ACCESS_KEY=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
+root@ip-172-31-28-91:~# mkdir learn-terraform-aws-instance
+root@ip-172-31-28-91:~# cd learn-terraform-aws-instance
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# touch main.tf
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# vi main.tf 
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform init
+Command 'terraform' not found, but can be installed with:
+snap install terraform
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+--2024-02-20 03:22:28--  https://apt.releases.hashicorp.com/gpg
+Resolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 99.84.66.129, 99.84.66.49, 99.84.66.57, ...
+Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|99.84.66.129|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3980 (3.9K) [binary/octet-stream]
+Saving to: ‘STDOUT’
+
+-                                   100%[================================================================>]   3.89K  --.-KB/s    in 0s      
+
+2024-02-20 03:22:28 (48.2 MB/s) - written to stdout [3980/3980]
+
+deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com jammy main
+Hit:1 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy InRelease
+Get:2 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]                           
+Get:3 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports InRelease [109 kB]                         
+Get:4 https://apt.releases.hashicorp.com jammy InRelease [12.9 kB]                                              
+Get:5 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]                   
+Get:6 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Get:7 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy/universe Translation-en [5652 kB]
+Get:8 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy/universe amd64 c-n-f Metadata [286 kB]
+Get:9 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [217 kB]
+Get:10 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy/multiverse Translation-en [112 kB]
+Get:11 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy/multiverse amd64 c-n-f Metadata [8372 B]
+Get:12 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1377 kB]
+Get:13 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [273 kB]
+Get:14 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [1431 kB]
+Get:15 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [235 kB]
+Get:16 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1049 kB]
+Get:17 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [237 kB]
+Get:18 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [22.1 kB]
+Get:19 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [42.1 kB]
+Get:20 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [10.1 kB]
+Get:21 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [472 B]
+Get:22 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [41.7 kB]
+Get:23 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/main Translation-en [10.5 kB]
+Get:24 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/main amd64 c-n-f Metadata [388 B]
+Get:25 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:26 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [24.3 kB]
+Get:27 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/universe Translation-en [16.5 kB]
+Get:28 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/universe amd64 c-n-f Metadata [644 B]
+Get:29 http://us-west-2.ec2.archive.ubuntu.com/ubuntu jammy-backports/multiverse amd64 c-n-f Metadata [116 B]
+Get:30 https://apt.releases.hashicorp.com jammy/main amd64 Packages [119 kB]
+Get:31 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1161 kB]
+Get:32 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [213 kB]
+Get:33 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [1401 kB]
+Get:34 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [231 kB]
+Get:35 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [842 kB]
+Get:36 http://security.ubuntu.com/ubuntu jammy-security/universe Translation-en [161 kB]
+Get:37 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [16.8 kB]
+Get:38 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [37.1 kB]
+Get:39 http://security.ubuntu.com/ubuntu jammy-security/multiverse Translation-en [7476 B]
+Get:40 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [260 B]
+Fetched 29.7 MB in 6s (5069 kB/s) 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+74 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  terraform
+0 upgraded, 1 newly installed, 0 to remove and 74 not upgraded.
+Need to get 26.9 MB of archives.
+After this operation, 84.5 MB of additional disk space will be used.
+Get:1 https://apt.releases.hashicorp.com jammy/main amd64 terraform amd64 1.7.3-1 [26.9 MB]
+Fetched 26.9 MB in 1s (39.0 MB/s)     
+Selecting previously unselected package terraform.
+(Reading database ... 64799 files and directories currently installed.)
+Preparing to unpack .../terraform_1.7.3-1_amd64.deb ...
+Unpacking terraform (1.7.3-1) ...
+Setting up terraform (1.7.3-1) ...
+Scanning processes...                                                                                                                        
+Scanning linux images...                                                                                                                     
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 4.16"...
+- Installing hashicorp/aws v4.67.0...
+- Installed hashicorp/aws v4.67.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.app_server will be created
+  + resource "aws_instance" "app_server" {
+      + ami                                  = "ami-830c94e3"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tags_all                             = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.app_server: Creating...
+╷
+│ Error: creating EC2 Instance: UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:iam::058264556162:user/janbask is not authorized to perform: ec2:RunInstances on resource: arn:aws:ec2:us-west-2:058264556162:instance/* because no identity-based policy allows the ec2:RunInstances action. Encoded authorization failure message: g2UGTuKlgc1z8yw2pR6Ciz-KC24yrXkDfCZ65ru-RzuEniJxAmteG1RvZk3zHflrW3aygOEGBeVfp95QvuEYe5CkOWqdER8aJi7jai0aSbFF2_dlLNyjHoW8fle0w-ZuRqiiVvXm6VSoUpk0ZlcAZ3YtXk4QqmqcMBarco3Q5e9P6qkuQp7NyJvRRPgzuVNL2AsSj4b-onP9bOsmURe_AWMdPhl68bbGWPlUTsiesgXjGYWEXfewKem1IINdQVC5HfIQin9OOwnbrgcWFkiSHzHY791lf2mlIre6pO5sA2wn6DJsibRD82nYiQSTwRFJT-FhbvJzTanYi7W6ZQvQkfvmA9wYeGZx81SKr4fUpOr7eP1Q74mRR5whzKumDN-xrb69JZCQhEcOsC7JbvzKdPF00j3VSwrgzw7l_hyKQlDtc7az9mJYBKqRMibBtHMRhCe7X3CbW0BLxMdaPtMS7NySUjlE4pbb7uunc-uGAQW8V3vahlMyv3zeJhKylsAWXxWwIoa3E4iE4mQ1bjrfFBC9O7YJma-wSUcQt-QHh-wiql0_N1wXUoLM0L2l6gfTd17zdg92rFA7P8fYM98d-ixc7OtoOM7hQTZ-AJg5Aj17NoGjiCuqCUTcvYS5XI6s6u6XawtIbxo7PBgFKkQQ0DWYkxVKKhm1xK2h
+│       status code: 403, request id: ff3c2368-ffd0-43a0-aa02-e031515470cd
+│ 
+│   with aws_instance.app_server,
+│   on main.tf line 16, in resource "aws_instance" "app_server":
+│   16: resource "aws_instance" "app_server" {
+│ 
+╵
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.app_server will be created
+  + resource "aws_instance" "app_server" {
+      + ami                                  = "ami-830c94e3"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tags_all                             = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.app_server: Creating...
+╷
+│ Error: creating EC2 Instance: UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:iam::058264556162:user/janbask is not authorized to perform: ec2:RunInstances on resource: arn:aws:ec2:us-west-2:058264556162:instance/* because no identity-based policy allows the ec2:RunInstances action. Encoded authorization failure message: IZNkgeEcLofKJBhYd1WRgJWxzfqVC4OJlRiyLWgFgVjXnxqvTfbiSOF-qTdpNXnwJ2Jsz7qeTnoCFBWDDOX1r1_Y0gCJbVtemgfz_5BUWW_5AcbMTsKRYpKvwRExZBkiQEO5FclzkQTpxU-gDF8-2d1lFVsWqdSMW4pWyVkxp0Hwpg0vqlFwaDfviT0dLgA_1UxDuK7LQcgDgSjbLStaDnqqCsNLjBfAG8LeOuDjF-YQtuNg2ocKfEr92whxsEYN9uCW-Ynyklm-OhrPjRXT_WIAm6wdgPZZGGrSL4KCAQoi2v3kSuSDmWG6u_qfJqWuXTLyPblEg6-o6NoKr1BvIiBtF48_VTzIDz-EFCmrQxxHSFlqT1TyuZf7xSz74a12WHzfBoCcyFihs5gBfuUy1LR3GQRHKYFKi2-yNxCZu8ySyCNNx19WK6WedrS-Y9QD36C8dECxmnRG5dtCl58Nb4GM1YEEzhC_bqdm_zMnqxHKKiD75iCkTFzvFLCW9_E-9bwOXUQjJwYbyEzjHUxBwpUsrbRxQvHu2ZvJj-RQoCtURN5p2V8OHvlkAcuUqTLRhjiXe6t3TV8G8ozKukPMelOlgRVorqb2kPDTyoKq-84qBqLny6n8SM2APRMGhoRs-cKZBK2IpCV3byKFC8NrYECT_oQBWFMREr7F
+│       status code: 403, request id: e51be6bb-5369-4bdf-a2fb-4383054a296e
+│ 
+│   with aws_instance.app_server,
+│   on main.tf line 16, in resource "aws_instance" "app_server":
+│   16: resource "aws_instance" "app_server" {
+│ 
+╵
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# export AWS_ACCESS_KEY_ID=AKIAQ3EGWSKBNMC5TFN2
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# export AWS_SECRET_ACCESS_KEY=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
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using previously-installed hashicorp/aws v4.67.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.app_server will be created
+  + resource "aws_instance" "app_server" {
+      + ami                                  = "ami-830c94e3"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tags_all                             = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.app_server: Creating...
+aws_instance.app_server: Still creating... [10s elapsed]
+aws_instance.app_server: Still creating... [20s elapsed]
+aws_instance.app_server: Still creating... [30s elapsed]
+aws_instance.app_server: Still creating... [40s elapsed]
+aws_instance.app_server: Creation complete after 42s [id=i-0cba9534ac569cb14]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform destroy
+aws_instance.app_server: Refreshing state... [id=i-0cba9534ac569cb14]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.app_server will be destroyed
+  - resource "aws_instance" "app_server" {
+      - ami                                  = "ami-830c94e3" -> null
+      - arn                                  = "arn:aws:ec2:us-west-2:058264556162:instance/i-0cba9534ac569cb14" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "us-west-2a" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-0cba9534ac569cb14" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0d8ca12e1cc385c14" -> null
+      - private_dns                          = "ip-172-31-24-63.us-west-2.compute.internal" -> null
+      - private_ip                           = "172.31.24.63" -> null
+      - public_dns                           = "ec2-34-221-232-252.us-west-2.compute.amazonaws.com" -> null
+      - public_ip                            = "34.221.232.252" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [
+          - "default",
+        ] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0f6321ce5d21070bc" -> null
+      - tags                                 = {
+          - "Name" = "ExampleAppServerInstance"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "ExampleAppServerInstance"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-0b450b6df5c669321",
+        ] -> null
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 0 -> null
+          - tags                  = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-05cce7105d778b864" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "standard" -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_instance.app_server: Destroying... [id=i-0cba9534ac569cb14]
+aws_instance.app_server: Still destroying... [id=i-0cba9534ac569cb14, 10s elapsed]
+aws_instance.app_server: Still destroying... [id=i-0cba9534ac569cb14, 20s elapsed]
+aws_instance.app_server: Destruction complete after 30s
+
+Destroy complete! Resources: 1 destroyed.
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.app_server will be created
+  + resource "aws_instance" "app_server" {
+      + ami                                  = "ami-830c94e3"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tags_all                             = {
+          + "Name" = "ExampleAppServerInstance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.app_server: Creating...
+aws_instance.app_server: Still creating... [10s elapsed]
+aws_instance.app_server: Still creating... [20s elapsed]
+aws_instance.app_server: Still creating... [30s elapsed]
+aws_instance.app_server: Still creating... [40s elapsed]
+aws_instance.app_server: Still creating... [50s elapsed]
+aws_instance.app_server: Creation complete after 51s [id=i-06b464ecce3aeaee9]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+root@ip-172-31-28-91:~/learn-terraform-aws-instance# terraform apply
+aws_instance.app_server: Refreshing state... [id=i-06b464ecce3aeaee9]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Point to be remember:
+======================
+1) in terraform we have mainly 3 commands
+    terraform init   > inital setup command
+    terraform apply  > create the infrastucture
+    terrafor destroy > delete the infrstucture
+
+2) in terraform we write configuration in HCL language by provider document in main.tf file
+
+3) write a logic to create S3 bucket
+
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.37.0"
+    }
+  }
+}
+
+provider "aws" {
+  resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+}
