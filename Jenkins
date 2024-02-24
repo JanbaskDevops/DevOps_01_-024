@@ -1,0 +1,96 @@
+What is a Advantage of Azure pipeline?[Pipeline as code]
+To run my pipeline, I am using 11 minutes cloud time, so my billing would be only for 11 minute
+
+Jenkins: The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project.
+
+Jinkins installation: https://www.jenkins.io/doc/book/installing/
+
+Step1: select linux(ubuntu) box then enable port 8080, then Installing java
+
+apt-get update
+apt install apt install openjdk-17-jre-headless -y
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+http://<serverURL>:8080
+
+http://ec2-54-244-81-206.us-west-2.compute.amazonaws.com:8080/
+ganesh/Ganesh@321
+
+In jenkins we refer activity as Job
+
+My requirement is I want to print date every minute
+
+How we can utilize jenkins?
+==========================
+Example database backup
+Stopping and starting server
+
+
+How to create freestyle job in jenkins?
+How to do master slave setup? or Distributed build
+How to create pipeline job in jenkins?
+Taking help for running pipeline
+plugin and their installation
+
+
+What is plugin
+==============
+let say my requirement is I want to push my app to apple app center
+
+How to write jenkins file?
+==========================
+pipeline(){
+
+agent <server>
+
+stages
+  stage
+    steps
+    steps
+    steps
+  stage
+    steps
+    steps
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Hi') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Bye') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
+
+Red: Fail
+Green: Pass
+Yellow: unstable
+
+How to write pipeline?
+======================
+http://ec2-54-244-81-206.us-west-2.compute.amazonaws.com:8080/job/myautomation%20pipeline/pipeline-syntax/
+
+
+mail bcc: 'abimbola@gmail.com', body: '''Hello,
+Please check you mesage box, I am trying to call you''', cc: 'umesh@gmail.com', from: '', replyTo: '', subject: 'Test', to: 'karthik@gmail.com'
