@@ -1,0 +1,109 @@
+Ansible:
+========
+
+So, in IT industry we are working on multiple host. and their would be some activity going on each host, let say my requirement is I want to run the same command to all host, then I have 2 option:
+
+1) Go to indivisual box and run the command
+
+2) DO by configuration management, where you create master and slave setup.
+
+Steps to create Ansible Lab:
+============================
+
+1) Create 4 linux box
+
+2) Rename them as master and server1/2/3 for identification purpose.
+
+3) Now login to all 4 servers
+
+ec2-34-219-123-119.us-west-2.compute.amazonaws.com
+ec2-52-27-46-14.us-west-2.compute.amazonaws.com
+ec2-52-13-224-184.us-west-2.compute.amazonaws.com
+ec2-34-215-167-68.us-west-2.compute.amazonaws.com
+
+Step1: Change PasswordAuthentication to yes in /etc/ssh/sshd_config
+sudo service sshd restart
+
+Step2: sudo adduser devops
+
+Step3: sudo vi /etc/sudoers and give Sudo permission to devops
+devops   ALL=(ALL:ALL) NOPASSWD:ALL
+
+Step4: Login by devops user to master/nodes
+
+Step5: Install ansible on master by devops user
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository --yes --update ppa:ansible/ansible
+$ sudo apt install ansible
+
+Step:5 
+ssh-keygen(On Master)
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-34-219-123-119.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-52-27-46-14.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-52-13-224-184.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-34-215-167-68.us-west-2.compute.amazonaws.com
+
+
+
+Step:6 Changed host from public to private
+ec2-3-15-29-163.us-east-2.compute.amazonaws.com  
+ec2-18-220-86-200.us-east-2.compute.amazonaws.com
+ec2-18-189-170-181.us-east-2.compute.amazonaws.com
+
+ip-172-31-0-99.us-east-2.compute.internal
+ip-172-31-14-222.us-east-2.compute.internal
+ip-172-31-15-82.us-east-2.compute.internal
+
+ansible -i /etc/ansible/hosts -m command -a "uptime" all
+ansible-playbook -i /etc/ansible/hosts nginx_install.yml
+
+
+https://docs.ansible.com/ansible/latest/network/getting_started/first_playbook.html
+
+devops@ip-172-31-16-215:~$ ansible-playbook -i /etc/ansible/hosts /home/devops/playbook.yaml
+
+PLAY [all] **************************************************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************************
+ok: [ec2-52-13-224-184.us-west-2.compute.amazonaws.com]
+ok: [ec2-52-27-46-14.us-west-2.compute.amazonaws.com]
+ok: [ec2-34-215-167-68.us-west-2.compute.amazonaws.com]
+ok: [ec2-34-219-123-119.us-west-2.compute.amazonaws.com]
+
+TASK [ensure nginx is at the latest version] ****************************************************************************************************************
+changed: [ec2-34-219-123-119.us-west-2.compute.amazonaws.com]
+changed: [ec2-52-27-46-14.us-west-2.compute.amazonaws.com]
+changed: [ec2-34-215-167-68.us-west-2.compute.amazonaws.com]
+changed: [ec2-52-13-224-184.us-west-2.compute.amazonaws.com]
+
+TASK [start nginx] ******************************************************************************************************************************************
+ok: [ec2-52-27-46-14.us-west-2.compute.amazonaws.com]
+ok: [ec2-34-215-167-68.us-west-2.compute.amazonaws.com]
+ok: [ec2-52-13-224-184.us-west-2.compute.amazonaws.com]
+ok: [ec2-34-219-123-119.us-west-2.compute.amazonaws.com]
+
+PLAY RECAP **************************************************************************************************************************************************
+ec2-34-215-167-68.us-west-2.compute.amazonaws.com : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ec2-34-219-123-119.us-west-2.compute.amazonaws.com : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ec2-52-13-224-184.us-west-2.compute.amazonaws.com : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ec2-52-27-46-14.us-west-2.compute.amazonaws.com : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+Yellow: Some activity done
+Green: No changes needed
+
+In Ansible if we run same command multiple times, it will not impact our environment.
+
+Homework:
+========
+Please watch/practice https://killercoda.com/het-tanis/course/Ansible-Labs
+
+
+
+
+
+
+
+
+
+
