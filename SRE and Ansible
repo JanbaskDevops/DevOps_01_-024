@@ -1,0 +1,47 @@
+Waiting for resource to join
+============================
+
+Today's topic is-
+
+1) Monitoring 
+2) SRE
+
+DevOps is all improvment[Theory]. SRE is actual implementation of DevOPs[Implementing the improvement]
+https://www.opcito.com/blogs/mastering-the-principles-of-sre-a-guide-to-building-efficient-systems
+
+
+Monitoring in DevOps
+====================
+Below steps are involved for monitoring-
+
+1) Collecting log to a central place.
+
+2) Filtering the log
+
+3) Visualization.
+
+Improntant point: Human mind are working on Image, and basically goal monitoring system is to create chart to visualize data effectively
+
+1) Splunk
+
+2) ELK
+
+3) Garafana and premethous
+
+
+Notes: https://github.com/JanbaskDevops/studyMatarial/tree/main/3-%20Monitoring%20and%20Configuration%20management 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
