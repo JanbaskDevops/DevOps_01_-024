@@ -1,0 +1,31 @@
+Application and Infrastucture:
+==============================
+
+Application: I want one application for E-leraning portal[Janbask]
+
+Infrastucture: Where I can run this application.
+
+These 2 cyles are running parallely.
+
+1) My requirement is applying DevOps cycle to Application.
+2) Provisioning infrastucture on demand
+
+Step1: We have created S3 Bucket in cloud.
+Step2: Uploaded e-learning folder to cloud
+Step3: Given access to resources
+Step4: Accessing the URL
+
+Now, My application is up and running https://cloudopsforme.s3.ap-south-1.amazonaws.com/E-learning+Portal+version2/index.html
+
+Now we can have 2 situation:
+
+1) Infrastucture management.
+2) Application management.
+
+Handshake:
+=========
+Suppose I want to integrate sonarcloud with my application
+
+
+https://info.credly.com/
+https://cognitiveclass.ai/
