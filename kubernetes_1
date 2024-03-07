@@ -1,0 +1,54 @@
+Kubernetes and helm
+===================
+
+What is Docker?
+Packing application and dependacies. Docker is a single host solution.
+
+Docker compose, docker swarm[multi host solution], but these are not very popular. reason is thier competetors is google[Kubernetes].
+
+For Google container is not a new team they are running container from last 2 decoade[Borg and Omega]
+
+Docker handshaked with K8s and agreed that Imgae would be created by docker, and it would be running in K8s.
+
+
+Kuberntetes architecture:
+=========================
+> https://kubernetes.io/docs/setup/best-practices/cluster-large/
+
+> In k8s we have concept of master and slave.
+
+In master we have 4 components.
+==============================
+1) API Server: It's responsible for all the communication between client and server.
+Example: client reachout to API server and say I need 7000 Node. > out of capacity 
+                                               I need 3000 Node. > it will create 3000 Node.
+                                               I need 5000 Node. > I will create new 2000
+
+2) ETCD(Fact of cluster): It will have all the information about current configuration. and it will store as a part of key value pair.
+      server_count: 3000
+
+3) Controller: it like management components.
+
+4) Schedular: it is responsible for creating/deleting the resource.
+
+https://github.com/JanbaskDevops/studyMatarial/tree/main/1-%20Container/K8s
+
+Kubernetes installation:
+========================
+
+
+In slave we have 3 components.
+=============================
+
+1) Kubelet: Agent for master and slave communication.
+
+2) kubeProxy: Networking part of slave is known as kubeproxy.
+     In servers in AWS > Under security
+        1) Inbound rules
+        2) Outbound rule
+
+3) Container(Pod): Running instance from docker image
+
+Client:
+=======
+SOmeone who need responce
