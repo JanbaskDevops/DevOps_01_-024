@@ -1,0 +1,113 @@
+Waiting for resource to join
+
+Today's topic: Pod, controller and service mesh
+
+Pod:
+===
+Pod is group of container.
+1) Init container
+2) Main container
+3) Side car container
+
+My reqirement is I want to run container  with name myContainer with port 8080 on TCP
+
+docker run -idt -p 8080:8080 --name MyContainer image_name
+
+Above command work fine one time per host, and it will give port not free.
+
+In kubernetes we have implemented multihost solution, and they have defined YAML formate for running the container.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+apiVersion
+kind
+metadata
+spec
+
+High cluster concideration:
+===========================
+
+    No more than 110 pods per node. [Max capacity= 550000]
+    No more than 5,000 nodes[worker node].
+    No more than 150,000 total pods.
+    No more than 300,000 total containers.
+
+Kubernetes cluster on cloud
+============================
+
+Replicaset- When we want identical containers
+replication controller- same as replica set but 
+job
+cronjob
+daemon set
+
+
+Lets say 1 container can serve 100 users, and I want to server 10000 users then I need 100 identical containers
+
+who is going to write these YAML file?
+======================================
+These days we have some tools available like Helm that will write these YAML for you
+
+https://helm.sh/docs/intro/install/ [Helm charts installation]
+
+How to create helm chart
+=========================
+helm create chart_name
+
+
+Service mesh
+============
+GUI based implmentation for managing K8s environment.
+
+
+These days Developer are providing helm chart, so we just need to install/uninstall helm chart.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
