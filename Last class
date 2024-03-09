@@ -1,0 +1,175 @@
+Waiting for resource to join
+=============================
+Task1: Terraform code that does the following:
+    Build a new nginx:latest image with a custom nginx.conf via Dockerfile
+    Create a new namespace
+    2 Replicaset
+    0.5vcpu & 512Mi Limit
+    ClusterIP + Port 8080
+    1 Persistent Volume
+        2Gi capacity
+        local file path (e.g., ${PWD}/pvc)
+    Set nginx logs to write to the above PVC
+
+
+Solution:
+=========
+# Define Dockerfile content
+variable "dockerfile_content" {
+  default = <<EOF
+FROM nginx:latest
+COPY nginx.conf /etc/nginx/nginx.conf
+EOF
+}
+
+# Dockerfile location
+variable "dockerfile_path" {
+  default = "${path.module}/Dockerfile"
+}
+
+# Nginx configuration file content
+variable "nginx_conf_content" {
+  default = <<EOF
+# Custom nginx configuration
+EOF
+}
+
+# Nginx configuration file location
+variable "nginx_conf_path" {
+  default = "${path.module}/nginx.conf"
+}
+
+# Create Dockerfile
+resource "local_file" "dockerfile" {
+  filename = var.dockerfile_path
+  content  = var.dockerfile_content
+}
+
+# Create nginx.conf file
+resource "local_file" "nginx_conf" {
+  filename = var.nginx_conf_path
+  content  = var.nginx_conf_content
+}
+
+# Create Kubernetes namespace
+resource "kubernetes_namespace" "example_namespace" {
+  metadata {
+    name = "example-namespace"
+  }
+}
+
+# Create Persistent Volume
+resource "kubernetes_persistent_volume" "example_pv" {
+  metadata {
+    name = "example-pv"
+  }
+  spec {
+    capacity = {
+      storage = "2Gi"
+    }
+    access_modes = ["ReadWriteOnce"]
+    persistent_volume_source {
+      local {
+        path = "${path.module}/pvc"
+      }
+    }
+  }
+}
+
+# Create ReplicaSet
+resource "kubernetes_replica_set" "example_rs" {
+  metadata {
+    name      = "example-rs"
+    namespace = kubernetes_namespace.example_namespace.metadata[0].name
+    labels = {
+      app = "nginx"
+    }
+  }
+
+  spec {
+    replicas = 2
+    selector {
+      match_labels = {
+        app = "nginx"
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          app = "nginx"
+        }
+      }
+      spec {
+        container {
+          name    = "nginx"
+          image   = "nginx:latest"
+          volume_mount {
+            name       = "nginx-log-volume"
+            mount_path = "/var/log/nginx"
+          }
+        }
+        volumes {
+          name = "nginx-log-volume"
+          persistent_volume_claim {
+            claim_name = kubernetes_persistent_volume_claim.example_pvc.metadata[0].name
+          }
+        }
+      }
+    }
+  }
+}
+
+# Create Persistent Volume Claim
+resource "kubernetes_persistent_volume_claim" "example_pvc" {
+  metadata {
+    name      = "example-pvc"
+    namespace = kubernetes_namespace.example_namespace.metadata[0].name
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests = {
+        storage = "2Gi"
+      }
+    }
+  }
+}
+
+# Create Service
+resource "kubernetes_service" "example_svc" {
+  metadata {
+    name      = "example-svc"
+    namespace = kubernetes_namespace.example_namespace.metadata[0].name
+  }
+  spec {
+    selector = {
+      app = "nginx"
+    }
+    port {
+      port        = 8080
+      target_port = 80
+    }
+    type = "ClusterIP"
+  }
+}
+
+
+Task2: I want to create private resource in azure, but want to access them in public.
+
+# So, Whatever we have done so far in our course those are just basic things. it's like alphabets are basic sentence formation in English.
+
+# 30 Days English speaking course
+
+# DevOps is all about improvement[Mostly we are working with development team]
+
+How to make devops activity easy:
+==================================
+Teams to google: namespace, Replicaset, vcpu & Mi Limit, ClusterIP, Persistent Volume, local file path, docker image
+
+
+Study matarial: https://github.com/JanbaskDevops/studyMatarial/
+
+Interview question: https://github.com/JanbaskDevops/Interview_questions
+
+
+
